@@ -5,6 +5,7 @@ from threading import Thread
 import hashlib
 import sqlite3
 import socket
+import sys
 
 host = '0.0.0.0' # address to host(you can change it, but there is no need to)
 port = int(input('Socket port: '))

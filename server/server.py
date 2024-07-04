@@ -15,13 +15,13 @@ server.listen(5) # start socket listening
 
 
 def register(user_key, login, password):
-    registration_key = open('reg_key.txt', 'r').read().replace('\n', '')
+    registration_key = open(sys.argv[0].replace('server.py', 'reg_key.txt'), 'r').read().replace('\n', '')
     if user_key != registration_key:
         return 'Incorrect registration key', False
     hash = hashlib.shake_256()
     hash.update(password.encode())
     password = hash.hexdigest(512)
-    database = sqlite3.connect('users.db')
+    database = sqlite3.connect(sys.argv[0].replace('server.py', 'users.db'))
     cursor = database.cursor()
     cursor.execute('''
     CREATE TABLE IF NOT EXISTS Credentials (
@@ -88,7 +88,7 @@ def login_client(new_client, client_list, ip):
             login_data = [login, password]
         login = login_data[0]
         password = login_data[1].encode()
-        database = sqlite3.connect('users.db')
+        database = sqlite3.connect(sys.argv[0].replace('server.py', 'users.db'))
         hash = hashlib.shake_256()
         hash.update(password)
         password = hash.hexdigest(512)

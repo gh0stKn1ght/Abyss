@@ -44,5 +44,5 @@ config = b'username: changeme\npassword: changeme\nip: 127.0.0.1\nport: 1234'
 fernet = Fernet(master_key)
 config = fernet.encrypt(config)
 open(f'{directory}{slash}config', 'wb').write(config)
-input(f'Your local master-key. Save it somewhere. Press Enter when you are ready...')
+input(f'Your local master-key: {master_key}. Save it somewhere. Press Enter when you are ready...')
 print('Successfully installed Abyss client!')

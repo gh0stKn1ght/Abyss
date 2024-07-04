@@ -39,9 +39,9 @@ def ask_system():
 slash = ask_system()
 os.system(f'curl https://raw.githubusercontent.com/gh0stKn1ght/Abyss/main/client/client.py > {directory}{slash}client.py')
 os.system(f'curl https://raw.githubusercontent.com/gh0stKn1ght/Abyss/main/client/client.py > {directory}{slash}config.py')
-master-key = Fernet.generate_key()
+master_key = Fernet.generate_key()
 config = b'username: changeme\npassword: changeme\nip: 127.0.0.1\nport: 1234'
-fernet = Fernet(master-key)
+fernet = Fernet(master_key)
 config = fernet.encrypt(config)
 open(f'{directory}{slash}config', 'wb').write(config)
 input(f'Your local master-key. Save it somewhere. Press Enter when you are ready...')

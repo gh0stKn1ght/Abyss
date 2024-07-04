@@ -18,9 +18,9 @@ def register(user_key, login, password):
     registration_key = open('reg_key.txt', 'r').read().replace('\n', '')
     if user_key != registration_key:
         return 'Incorrect registration key', False
-    hash = hashlib.md5()
+    hash = hashlib.shake_256()
     hash.update(password.encode())
-    password = hash.hexdigest()
+    password = hash.hexdigest(512)
     database = sqlite3.connect('users.db')
     cursor = database.cursor()
     cursor.execute('''
@@ -89,9 +89,9 @@ def login_client(new_client, client_list, ip):
         login = login_data[0]
         password = login_data[1].encode()
         database = sqlite3.connect('users.db')
-        hash = hashlib.md5()
+        hash = hashlib.shake_256()
         hash.update(password)
-        password = hash.hexdigest()
+        password = hash.hexdigest(512)
         cursor = database.cursor()
         cursor.execute('SELECT password FROM Credentials WHERE login = ?', (login,))
         stored_password = cursor.fetchone()[0]

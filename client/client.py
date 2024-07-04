@@ -166,7 +166,7 @@ class Ui_Login(object):
     def import_config(self):
         key = self.master_key_edit.text() # get key from input
         fernet = Fernet(key) # create Fernet object
-        config = list(fernet.decrypt(open('config', 'rb').read()).decode().split('\n')) # decrypt and read config file
+        config = list(fernet.decrypt(open(sys.argv[0].replace('client.py', 'config'), 'rb').read()).decode().split('\n')) # decrypt and read config file
         username = config[0][10:] # get username from config
         password = config[1][10:] # get password from config
         ip = config[2][4:] # get host ip from config

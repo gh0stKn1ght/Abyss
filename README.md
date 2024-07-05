@@ -1,3 +1,5 @@
+# DISCLAIMER: The project is still in the testing/development phase, so I can't guarantee absolute stable and safe work. Please, use(or better not, for now) it at your own risk.
+
 # Abyss
 Abyss is a chat application that uses RSA and Fernet encryptions to protect your data.
 
